@@ -4,7 +4,7 @@ import {APP_BASE_HREF} from '@angular/common';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  {path: '', component: AppComponent, pathMatch: 'full'}
+  {path: 'production', component: AppComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
