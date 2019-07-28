@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+// // always include only once per project
+// @include mat-core();
+
+// // import our custom theme
+// @import 'theme.scss';
+
+// // specify theme class eg: <body class="my-theme"> ... </body>
+// .my-theme {
+//   // use our theme with angular-material-theme mixin
+//   @include angular-material-theme($my-theme);
+// }
+
+html, body {height: 100%;}
+
+body{ margin: 0; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif}
+
+* {
+    margin: 0;
+  }
+

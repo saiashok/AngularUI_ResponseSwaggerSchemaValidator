@@ -1,0 +1,7 @@
+<form class="swagger-form">
+  <mat-card>
+    <mat-form-field class="swagger-full-width"> 
+      <textarea autosize matInput placeholder="Swagger JSON URL or JSON goes here..." [maxRows]="10" cols= 80 [(ngModel)]= "enteredValue" name="enteredValue" (change)= "ongetSwagger()" required></textarea>
+    </mat-form-field>
+  </mat-card>
+</form>

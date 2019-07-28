@@ -1,0 +1,9 @@
+<form>
+    <mat-card>
+      <mat-form-field class="responsejson-fullwidth"> 
+        <textarea autosize matInput placeholder="Response JSON goes here..." [maxRows]="10" cols= 80 [(ngModel)]= "enteredValue" name="enteredValue" (change)= "onchangeInResponse()" required></textarea>
+      </mat-form-field>
+    </mat-card>
+    <button mat-raised-button color='primary' (click)= "getCompareResult()" >GetCompareReport</button>
+  </form>
+  

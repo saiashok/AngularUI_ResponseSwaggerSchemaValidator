@@ -1,0 +1,147 @@
+<div class="container-fluid">
+  <div *ngIf="reportResponse !==''">
+    <div class="row" *ngIf="reportResponse.matchedFields.length===0 && reportResponse.swaggerListNotMatched.length>0 ">
+        <div class="col-sm">
+            <mat-card [style.background]="reportResponse.matchedFields.length >0 ? 'lightBlue':'coral'">
+                <mat-card-title><h4>WARNING..!</h4></mat-card-title>
+                <mat-card-subtitle><h5>None of the fields matched....</h5></mat-card-subtitle>
+                <mat-card-content>
+                    One of the following is incorrect- Swagger/ OperationName-Type/ StatusCode/ JSON Response
+                </mat-card-content>
+              </mat-card>
+        </div>
+    </div>
+
+    <div>
+      <br>
+    </div>
+    <div class="row">
+        <div class="col-sm" >
+          <mat-card [style.background]="reportResponse.typeMismatches.length===0 ? 'green':'coral'">
+              <mat-card-title><h4>Type Mismatches</h4></mat-card-title>
+              <mat-card-subtitle><h5>Swagger vs JSON response</h5></mat-card-subtitle>
+              <mat-card-content>
+                  <mat-card-content>
+                      <ng-container *ngIf="reportResponse.typeMismatches.length>0">
+                    
+                            <div style= "text-align: left" *ngFor = "let item of reportResponse.typeMismatches">
+                         <b>Expected </b>-  {{item.swaggerPath}} - {{item.expectedVariableType}}
+                          <br>
+                        <b>  Actual </b>-  {{item.responsePath}} - {{item.actualVariableType}}
+                           <br>
+                          <br>
+                            </div>
+                        
+                        </ng-container> 
+                        <ng-container *ngIf="reportResponse.typeMismatches.length===0">
+                            <p>No Type mismatches found...</p>
+                          </ng-container> 
+  
+                  </mat-card-content>
+              </mat-card-content>
+
+          </mat-card>
+        </div>
+        <div class="col-sm">
+
+            <mat-card [style.background]="reportResponse.missingMandatoryFields.length===0 ? 'green': 'yellow'">
+                <mat-card-title><h4>Missing Mandatory fields</h4></mat-card-title>
+                <mat-card-subtitle><h5>Swagger vs JSON response</h5></mat-card-subtitle>
+                <mat-card-content>
+                    <ng-container *ngIf="reportResponse.missingMandatoryFields.length>0">
+                        <ul>
+                          <li style= "text-align: left"  *ngFor = "let item of reportResponse.missingMandatoryFields">{{item}}</li>
+                        </ul>
+                      </ng-container> 
+                      <ng-container *ngIf="reportResponse.missingMandatoryFields.length===0">
+                          <p>No missing Mandatory fileds...</p>
+                        </ng-container> 
+
+                </mat-card-content>
+                <mat-card-footer></mat-card-footer>
+            </mat-card>
+            
+        </div>
+        <div class="col-sm">
+            <mat-card [style.background]="reportResponse.swaggerListNotMatched.length>0 ? 'coral':'green'">
+                <mat-card-title><h4>Fields missing in Response</h4></mat-card-title>
+                <mat-card-subtitle><h5> Defined in Swagger- missing in JSON response</h5></mat-card-subtitle>
+                <mat-card-content>
+                    <ng-container *ngIf="reportResponse.swaggerListNotMatched">
+                        <ul>
+                          <li style= "text-align: left"  *ngFor = "let item of reportResponse.swaggerListNotMatched">{{item}}</li>
+                        </ul>
+                      </ng-container>
+                      <ng-container *ngIf="reportResponse.swaggerListNotMatched.length===0">
+                          <p>No missing fileds from Swagger Specification..</p>
+                        </ng-container>  
+                </mat-card-content>
+              </mat-card>
+          </div>
+          <div class="col-sm">
+              <mat-card [style.background]="reportResponse.responseListNotMatched.length>0 ? 'coral':'green'">
+                  <mat-card-title><h4>Fields missing in Swagger</h4></mat-card-title>
+                  <mat-card-subtitle><h5> Returned in JSON response- missing in Swagger spec</h5></mat-card-subtitle>
+                  <mat-card-content>
+                      <ng-container *ngIf="reportResponse.responseListNotMatched">
+                          <ul>
+                            <li style= "text-align: left"  *ngFor = "let item of reportResponse.responseListNotMatched">{{item}}</li>
+                          </ul>
+                        </ng-container>
+                        <ng-container *ngIf="reportResponse.responseListNotMatched.length===0">
+                            <p>Response returns all the fileds defined in Swagger Specification..</p>
+                          </ng-container>  
+                  </mat-card-content>
+                </mat-card>
+          </div>
+      </div>
+    </div>
+  </div>
+<br>
+<br>
+  <div>
+      <div class="row">
+          <div class="col-sm">
+              <mat-card [style.background]="'lightBlue'">
+                  <mat-card-title><h4>Info..!</h4></mat-card-title>
+                  <mat-card-subtitle><h5>Please follow below steps to invoke the report...</h5></mat-card-subtitle>
+                  <mat-card-content > 
+                    <!-- style="margin-left:300px; -->
+                        <table>
+                            <tr>
+                              <td><b>Step-1</b></td>
+                              <td> : </td>
+                              <td style="text-align: left">Give Swagger URL/ Swagger JSON to get the list of operations."Select Operation" will be auto-populated with list of operations available for the given swagger.</td>
+                            </tr> 
+                            <tr>
+                                <td><b>Step-2</b></td>
+                                <td> : </td>
+                                <td style="text-align: left">Select Operation for which you want to validate the response schema.</td>
+                              </tr>      
+                            <tr>
+                                <td><b>Step-3</b></td>
+                              <td> : </td>
+                              <td style="text-align: left">Select a StatusCode for which you want to validate the response schema.</td>
+                            </tr>
+  
+                            <tr>
+                                <td><b>Step-4</b></td>
+                                <td> : </td>
+                                <td style="text-align: left">Give the response JSON in the "Response goes here..." box.</td>
+                              </tr>
+                              <tr>
+                                  <td><b>Step-5</b></td>
+                                  <td> : </td>
+                                  <td style="text-align: left">Click on "GetCompareReport"</td>
+                                </tr>
+                          </table>
+                  </mat-card-content>
+                </mat-card>
+          </div>
+      </div>
+  </div>
+
+  <br>
+  <br>
+  <br>
+  <br>

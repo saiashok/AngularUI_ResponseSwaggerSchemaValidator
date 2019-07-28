@@ -1,0 +1,23 @@
+<ng-container *ngIf = "1==1">
+  <form class="api-form">
+      <mat-card>
+        <mat-form-field class ="api-full-width">
+          <mat-label>Select Operation</mat-label>
+          <mat-select [(ngModel)]= "selectedOperation" name="OperationsAvaiable" (selectionChange)= "populateStatuCodes($event)" required>
+            <mat-option *ngFor="let opNm of json?.response; let i = index" [value]= "i">
+              {{opNm.operationName}} -   {{opNm.operationType}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class ="api-full-width">
+            <mat-label>Select StatusCode</mat-label>
+            <mat-select [(ngModel)]= "selectedStatus" name="StatusAvaialble" (selectionChange)= "populateRequestObject($event)" required>
+                <mat-option *ngFor="let opNm of statusCodes; let i = index" [value]= "selectedStatus">
+                  {{opNm}}
+                </mat-option>
+              </mat-select> 
+          </mat-form-field>
+      </mat-card>
+  </form>
+</ng-container>
