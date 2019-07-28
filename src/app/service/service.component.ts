@@ -105,7 +105,7 @@ private swaggerJson = '';
 
    return axios({ 
       method: 'post', 
-    url: `${environment.apiBaseUrl}/schemavalidator/swagger'`, 
+    url: `${environment.apiBaseUrl}/schemavalidator/swagger`, 
     headers: this.httpOptions, 
     data: this.jsnreq}
     ).then( (response)=>{
@@ -163,7 +163,7 @@ private swaggerJson = '';
   
      return axios({ 
         method: 'post', 
-      url: `${environment.apiBaseUrl}/schemavalidator/validationreport'`, 
+      url: `${environment.apiBaseUrl}/schemavalidator/validationreport`, 
       headers: this.httpOptions, 
       data: requestBody}
       ).then( (response)=>{
